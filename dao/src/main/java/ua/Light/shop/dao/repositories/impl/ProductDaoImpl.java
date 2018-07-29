@@ -4,30 +4,51 @@ import org.springframework.stereotype.Repository;
 import ua.Light.shop.dao.model.Product;
 import ua.Light.shop.dao.repositories.ProductDao;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+import java.util.*;
 
 @Repository
 public class ProductDaoImpl implements ProductDao {
 
-     private final Map<Long,Product> productsMap = new HashMap<>();
-     private static long idGenerator = 1L;
-
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Override
     public void create(Product product) {
-        product.setId(idGenerator++);
-        productsMap.put(product.getId(),product);
+        entityManager.persist(product);
     }
 
     @Override
-    public List<Product> getAll() {
-        return new ArrayList<>(productsMap.values());
+    public Product get(Long id) {
+        return entityManager.find(Product.class, id);
     }
 
-    public Map<Long, Product> getProductsMap(){
-        return productsMap;
+    @Override
+    public List<Product> findAll() {
+        TypedQuery<Product> findAllProducts = entityManager.createQuery("SELECT p FROM Product p", Product.class);
+        return findAllProducts.getResultList();
+    }
+
+    @Override
+    public void delete(Long id) {
+        Query query = entityManager.createQuery("DELETE FROM Product p WHERE p.id = :id");
+        query.setParameter("id", id);
+        query.executeUpdate();
+
+    }
+
+    @Override
+    public void update(Long id, Product product) {
+        product.setId(id);
+        entityManager.merge(product);
+    }
+
+    @Override
+    public void deleteAll() {
+        Query query = entityManager.createQuery("DELETE FROM Product");
+        query.executeUpdate();
     }
 }
