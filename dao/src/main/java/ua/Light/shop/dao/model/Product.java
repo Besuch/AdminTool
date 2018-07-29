@@ -1,14 +1,36 @@
 package ua.Light.shop.dao.model;
 
+
+import javax.persistence.*;
+import java.util.Objects;
+
+@Entity
+@Table(name = "PRODUCTS")
 public class Product {
 
-    private String name;
-    private String category;
-    private String color;
-    private String parameter;
-    private int count;
-    private int price;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
     private Long id;
+
+    @Column(name = "NAME", nullable = false)
+    private String name;
+
+    @Column(name = "CATEGORY", nullable = false)
+    private String category;
+
+    @Column(name = "COLOR", nullable = false)
+    private String color;
+
+    @Column(name = "PARAMETER", nullable = false)
+    private String parameter;
+
+    @Column(name = "COUNT")
+    private int count;
+
+    @Column(name = "PRICE")
+    private int price;
+
 
 
     public Product() {
@@ -91,5 +113,24 @@ public class Product {
                 ", price=" + price +
                 ", id=" + id +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return count == product.count &&
+                price == product.price &&
+                Objects.equals(id, product.id) &&
+                Objects.equals(name, product.name) &&
+                Objects.equals(category, product.category) &&
+                Objects.equals(color, product.color) &&
+                Objects.equals(parameter, product.parameter);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, category, color, parameter, count, price);
     }
 }

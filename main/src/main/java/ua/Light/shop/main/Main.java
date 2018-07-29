@@ -37,7 +37,7 @@ public class Main {
                 System.out.println("product has been create succesfull");
             }else if ("PL".equals(arguments[0])){
                 System.out.println("List of products:");
-                System.out.println(productService.getAll());
+                System.out.println(productService.findAll());
             }
         }
 
