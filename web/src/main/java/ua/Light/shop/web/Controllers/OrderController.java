@@ -7,60 +7,62 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import ua.Light.shop.services.ProductService;
+import ua.Light.shop.services.OrderService;
+import ua.Light.shop.services.dto.OrderDto;
 import ua.Light.shop.services.dto.ProductDto;
 
 import java.util.List;
 
 @Controller
-@RequestMapping("/products")
-public class ProductController {
+@RequestMapping("/orders")
+public class OrderController {
 
-    public final static Logger log = LoggerFactory.getLogger(ProductController.class);
-    private final ProductService productService;
+    public final static Logger log = LoggerFactory.getLogger(OrderController.class);
+    private final OrderService orderService;
 
     @Autowired
-    public ProductController(ProductService productService) {
-        this.productService = productService;
+    public OrderController(OrderService orderService) {
+        this.orderService = orderService;
     }
+
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    List<ProductDto> findAll(){
-        log.info("Find all users {}", productService.findAll());
-        return productService.findAll();
+    List<OrderDto> findAll(){
+        log.info("Find all users {}", orderService.findAll());
+        return orderService.findAll();
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/{id}")
-    public @ResponseBody ProductDto findById(@PathVariable("id") Long id){
-        return productService.findById(id);
+    public @ResponseBody OrderDto findById(@PathVariable("id") Long id){
+        return orderService.findById(id);
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public void create(@RequestBody ProductDto product){
-        log.info("Create product {}", product);
-        productService.create(product);
+    public void create(@RequestBody OrderDto order){
+        log.info("Create order {}", order);
+        orderService.create(order);
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable("id") Long id){
-        productService.delete(id);
+        orderService.delete(id);
 
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void update(@PathVariable("id") Long id,@RequestBody ProductDto product){
-        productService.update(id, product);
+    public void update(@PathVariable("id") Long id,@RequestBody OrderDto order){
+        orderService.update(id, order);
 
     }
 
     @RequestMapping(method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
     public void deleteAll(){
-        productService.deleteAll();
+        orderService.deleteAll();
 
     }
 }
