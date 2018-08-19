@@ -54,10 +54,4 @@ public class ProductController {
     public void update(@PathVariable("id") Long id,@RequestBody ProductDto product){
         productService.update(id, product);
     }
-
-    @RequestMapping(method = RequestMethod.DELETE)
-    @ResponseStatus(HttpStatus.OK)
-    public void deleteAll(){
-        productService.deleteAll();
-    }
 }

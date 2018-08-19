@@ -55,10 +55,4 @@ public class OrderController {
     public void update(@PathVariable("id") Long id,@RequestBody OrderDto order){
         orderService.update(id, order);
     }
-
-    @RequestMapping(method = RequestMethod.DELETE)
-    @ResponseStatus(HttpStatus.OK)
-    public void deleteAll(){
-        orderService.deleteAll();
-    }
 }

@@ -3,6 +3,7 @@ package ua.light.shop.dao.repo;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +11,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
-import ua.light.shop.dao.model.User;
-import ua.light.shop.dao.repositories.UserDao;
+import ua.light.shop.entity.User;
+import ua.light.shop.dao.UserDao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -32,9 +33,8 @@ public class UserDaoTest {
     @Before
     @Sql("/sql/cleanup.sql")
     public void cleanUp(){
-        entityManager.createQuery("DELETE FROM User u").executeUpdate();
+        entityManager.createQuery("DELETE FROM User").executeUpdate();
         entityManager.clear();
-
     }
 
     @Test
@@ -52,7 +52,6 @@ public class UserDaoTest {
 
     @Test
     public void testDelete() {
-
         //given
         User user = new User(null, "John", "Doe", 45);
         entityManager.persist(user);
@@ -80,7 +79,6 @@ public class UserDaoTest {
         //than
         User actualUser = entityManager.find(User.class, user.getId());
         Assert.assertEquals(newUser, actualUser);
-
     }
 
     @Test

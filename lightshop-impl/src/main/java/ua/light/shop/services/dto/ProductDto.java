@@ -6,12 +6,12 @@ public class ProductDto {
     private String color;
     private String parameter;
     private int count;
-    private int price;
+    private double price;
 
     public ProductDto() {
     }
 
-    public ProductDto(String name, String category, String color, String parameter, int count, int price) {
+    public ProductDto(String name, String category, String color, String parameter, int count, double price) {
         this.name = name;
         this.category = category;
         this.color = color;
@@ -40,7 +40,7 @@ public class ProductDto {
         return count;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 

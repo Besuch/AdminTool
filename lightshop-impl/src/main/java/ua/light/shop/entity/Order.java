@@ -1,4 +1,4 @@
-package ua.light.shop.dao.model;
+package ua.light.shop.entity;
 
 
 import javax.persistence.*;

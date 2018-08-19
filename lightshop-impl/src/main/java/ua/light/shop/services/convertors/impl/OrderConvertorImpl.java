@@ -1,7 +1,7 @@
 package ua.light.shop.services.convertors.impl;
 
 import org.springframework.stereotype.Component;
-import ua.light.shop.dao.model.Order;
+import ua.light.shop.entity.Order;
 import ua.light.shop.services.convertors.OrderConvertor;
 import ua.light.shop.services.dto.OrderDto;
 

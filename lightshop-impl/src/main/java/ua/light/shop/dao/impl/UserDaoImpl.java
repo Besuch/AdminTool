@@ -1,8 +1,8 @@
-package ua.light.shop.dao.repositories.impl;
+package ua.light.shop.dao.impl;
 
 import org.springframework.stereotype.Repository;
-import ua.light.shop.dao.model.User;
-import ua.light.shop.dao.repositories.UserDao;
+import ua.light.shop.entity.User;
+import ua.light.shop.dao.UserDao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

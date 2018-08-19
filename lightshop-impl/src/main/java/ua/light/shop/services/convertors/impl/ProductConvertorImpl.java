@@ -1,7 +1,7 @@
 package ua.light.shop.services.convertors.impl;
 
 import org.springframework.stereotype.Component;
-import ua.light.shop.dao.model.Product;
+import ua.light.shop.entity.Product;
 import ua.light.shop.services.convertors.ProductConvertor;
 import ua.light.shop.services.dto.ProductDto;
 

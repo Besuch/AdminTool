@@ -1,6 +1,6 @@
 package ua.light.shop.services.convertors;
 
-import ua.light.shop.dao.model.User;
+import ua.light.shop.entity.User;
 import ua.light.shop.services.dto.UserDto;
 
 public interface UserConvertor {

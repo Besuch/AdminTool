@@ -1,8 +1,8 @@
-package ua.light.shop.dao.repositories.impl;
+package ua.light.shop.dao.impl;
 
 import org.springframework.stereotype.Repository;
-import ua.light.shop.dao.model.Order;
-import ua.light.shop.dao.repositories.OrderDao;
+import ua.light.shop.entity.Order;
+import ua.light.shop.dao.OrderDao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -43,11 +43,5 @@ public class OrderDaoImpl implements OrderDao {
     public void update(Long id, Order order) {
         order.setId(id);
         entityManager.merge(order);
-    }
-
-    @Override
-    public void deleteAll() {
-        Query query = entityManager.createQuery("DELETE FROM Order");
-        query.executeUpdate();
     }
 }

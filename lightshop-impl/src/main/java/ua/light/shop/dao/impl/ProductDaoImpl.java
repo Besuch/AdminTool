@@ -1,8 +1,8 @@
-package ua.light.shop.dao.repositories.impl;
+package ua.light.shop.dao.impl;
 
 import org.springframework.stereotype.Repository;
-import ua.light.shop.dao.model.Product;
-import ua.light.shop.dao.repositories.ProductDao;
+import ua.light.shop.entity.Product;
+import ua.light.shop.dao.ProductDao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -43,11 +43,5 @@ public class ProductDaoImpl implements ProductDao {
     public void update(Long id, Product product) {
         product.setId(id);
         entityManager.merge(product);
-    }
-
-    @Override
-    public void deleteAll() {
-        Query query = entityManager.createQuery("DELETE FROM Product");
-        query.executeUpdate();
     }
 }

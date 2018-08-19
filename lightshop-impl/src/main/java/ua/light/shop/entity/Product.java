@@ -1,4 +1,4 @@
-package ua.light.shop.dao.model;
+package ua.light.shop.entity;
 
 
 import javax.persistence.*;
@@ -29,13 +29,13 @@ public class Product {
     private int count;
 
     @Column(name = "PRICE")
-    private int price;
+    private double price;
 
 
     public Product() {
     }
 
-    public Product(String name, String category, String color, String parameter, int count, int price, Long id) {
+    public Product(String name, String category, String color, String parameter, int count, double price, Long id) {
         this.name = name;
         this.category = category;
         this.color = color;
@@ -65,7 +65,7 @@ public class Product {
         return count;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 

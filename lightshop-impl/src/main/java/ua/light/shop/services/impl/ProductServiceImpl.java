@@ -3,14 +3,15 @@ package ua.light.shop.services.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ua.light.shop.dao.model.Product;
-import ua.light.shop.dao.repositories.ProductDao;
+import ua.light.shop.dao.GeneralDao;
+import ua.light.shop.entity.Product;
+import ua.light.shop.dao.ProductDao;
 import ua.light.shop.services.ProductService;
 import ua.light.shop.services.convertors.ProductConvertor;
 import ua.light.shop.services.dto.ProductDto;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -48,22 +49,11 @@ public class ProductServiceImpl implements ProductService {
     @Transactional(readOnly = true)
     public List<ProductDto> findAll() {
         List<Product> products = productDao.findAll();
-        List<ProductDto> productDtos = new ArrayList<>();
-        for (Product product : products) {
-            ProductDto dto = productConvertor.toDto(product);
-            productDtos.add(dto);
-        }
-        return productDtos;
+        return products.stream().map(productConvertor::toDto).collect(Collectors.toList());
     }
 
     @Override
     public ProductDto findById(Long id) {
         return productConvertor.toDto(productDao.get(id));
-    }
-
-    @Override
-    @Transactional
-    public void deleteAll() {
-        productDao.deleteAll();
     }
 }
