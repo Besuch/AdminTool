@@ -3,7 +3,6 @@ package ua.light.shop.services.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ua.light.shop.dao.GeneralDao;
 import ua.light.shop.entity.Product;
 import ua.light.shop.dao.ProductDao;
 import ua.light.shop.services.ProductService;
@@ -42,7 +41,8 @@ public class ProductServiceImpl implements ProductService {
     @Transactional
     public void update(Long id, ProductDto product) {
         Product entity = productConvertor.toEntity(product);
-        productDao.update(id, entity);
+        entity.setId(id);
+        productDao.update(entity);
     }
 
     @Override

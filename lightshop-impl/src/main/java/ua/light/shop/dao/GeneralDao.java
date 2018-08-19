@@ -1,7 +1,5 @@
 package ua.light.shop.dao;
 
-import ua.light.shop.entity.Order;
-
 import java.util.List;
 
 public interface GeneralDao<T> {
@@ -13,5 +11,5 @@ public interface GeneralDao<T> {
 
     void delete(Long id);
 
-    void update(Long id, T t);
+    void update(T t);
 }

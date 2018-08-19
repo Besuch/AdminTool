@@ -16,7 +16,7 @@ import java.util.List;
 @RequestMapping("/products")
 public class ProductController {
 
-    public final static Logger log = LoggerFactory.getLogger(ProductController.class);
+    private final static Logger log = LoggerFactory.getLogger(ProductController.class);
     private final ProductService productService;
 
     @Autowired
@@ -27,8 +27,9 @@ public class ProductController {
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     List<ProductDto> findAll(){
-        log.info("Find all users {}", productService.findAll());
-        return productService.findAll();
+        List<ProductDto> productDtoList = productService.findAll();
+        log.info("Find all users {}", productDtoList);
+        return productDtoList;
     }
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE, path = "/{id}")

@@ -40,8 +40,7 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
-    public void update(Long id, Order order) {
-        order.setId(id);
+    public void update(Order order) {
         entityManager.merge(order);
     }
 }

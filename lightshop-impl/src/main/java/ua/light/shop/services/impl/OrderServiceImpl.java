@@ -3,7 +3,6 @@ package ua.light.shop.services.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ua.light.shop.dao.GeneralDao;
 import ua.light.shop.entity.Order;
 import ua.light.shop.dao.OrderDao;
 import ua.light.shop.services.OrderService;
@@ -42,7 +41,8 @@ public class OrderServiceImpl implements OrderService {
     @Transactional
     public void update(Long id, OrderDto order) {
         Order entity = orderConvertor.toEntity(order);
-        orderDao.update(id, entity);
+        entity.setId(id);
+        orderDao.update(entity);
     }
 
     @Override

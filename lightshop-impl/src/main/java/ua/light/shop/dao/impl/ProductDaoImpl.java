@@ -40,8 +40,7 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    public void update(Long id, Product product) {
-        product.setId(id);
+    public void update(Product product) {
         entityManager.merge(product);
     }
 }

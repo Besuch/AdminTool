@@ -3,7 +3,6 @@ package ua.light.shop.services.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ua.light.shop.dao.GeneralDao;
 import ua.light.shop.entity.User;
 import ua.light.shop.dao.UserDao;
 import ua.light.shop.services.UserService;
@@ -41,7 +40,8 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public void update(Long id, UserDto user) {
         User entity = userConvertor.toEntity(user);
-        userDao.update(id, entity);
+        entity.setId(id);
+        userDao.update(entity);
     }
 
     @Transactional(readOnly = true)

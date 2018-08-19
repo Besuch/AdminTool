@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import ua.light.shop.dao.OrderDao;
 import ua.light.shop.services.OrderService;
 import ua.light.shop.services.dto.OrderDto;
 
@@ -16,7 +17,7 @@ import java.util.List;
 @RequestMapping("/orders")
 public class OrderController {
 
-    public final static Logger log = LoggerFactory.getLogger(OrderController.class);
+    private final static Logger log = LoggerFactory.getLogger(OrderController.class);
     private final OrderService orderService;
 
     @Autowired
@@ -28,8 +29,9 @@ public class OrderController {
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     List<OrderDto> findAll(){
-        log.info("Find all users {}", orderService.findAll());
-        return orderService.findAll();
+        List<OrderDto> orderDtoList = orderService.findAll();
+        log.info("Find all users {}", orderDtoList);
+        return orderDtoList;
     }
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE, path = "/{id}")
