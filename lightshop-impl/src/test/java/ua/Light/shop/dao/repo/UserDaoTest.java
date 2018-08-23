@@ -3,7 +3,6 @@ package ua.light.shop.dao.repo;
 
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,9 +71,10 @@ public class UserDaoTest {
         User user = new User(null, "John", "Doe", 45);
         entityManager.persist(user);
         User newUser = new User(null, "Ivan", "Ivanov", 45);
+        newUser.setId(user.getId());
 
         //when
-        userDao.update(user.getId(), newUser);
+        userDao.update(newUser);
 
         //than
         User actualUser = entityManager.find(User.class, user.getId());
